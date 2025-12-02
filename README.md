@@ -5,8 +5,8 @@ API REST desarrollada con Spring Boot para gestionar proyectos, sus estados, las
 
 ## Tecnologías
 
-- Java 22  
-- Spring Boot 4 (Spring Web, Spring Data JPA)  
+- Java   
+- Spring Boot  (Spring Web, Spring Data JPA)  
 - MySQL  
 - Lombok  
 
