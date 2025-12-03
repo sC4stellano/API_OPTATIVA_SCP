@@ -13,32 +13,32 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Service
 public class ProjectServiceImpl implements ProjectService {
-    private final ProjectRepository projectRepository;
+    private final ProjectRepository projectRepository; // Inyección del repositorio
 
-    @Override
-    public List<Project> getAllProjects() {
-        return projectRepository.findAll();
+    @Override // Obtener todos los proyectos
+    public List<Project> getAllProjects() { // Obtener todos los proyectos
+        return projectRepository.findAll(); // Llama al método findAll del repositorio
     }
 
-    @Override
-    public Project getProjectById(Integer id) {
+    @Override // Obtener proyecto por ID
+    public Project getProjectById(Integer id) { // Obtener proyecto por ID
         return projectRepository.findById(id).orElse(null); // devuelve null si no existe
     }
 
-    @Override
-    public List<Project> searchProjectsByName(String word) {
-        return projectRepository.findByNameContainingIgnoreCase(word);
+    @Override // Buscar proyectos por nombre
+    public List<Project> searchProjectsByName(String word) { // Buscar proyectos por nombre
+        return projectRepository.findByNameContainingIgnoreCase(word); // Llama al método del repositorio
     }
 
-    @Override
-    public Project createProject(Project project) {
-        return projectRepository.save(project);
+    @Override // Crear un nuevo proyecto
+    public Project createProject(Project project) { // Crear un nuevo proyecto
+        return projectRepository.save(project); // Guarda el proyecto en la base de datos
     }
 
-    @Override
-    public Project updateProject(Integer id, Project project) {
+    @Override // Actualizar un proyecto existente
+    public Project updateProject(Integer id, Project project) { // Actualizar un proyecto existente
         Project existing = projectRepository.findById(id).orElse(null); // devuelve null si no existe
-        if (existing != null) {
+        if (existing != null) { // Si el proyecto existe, actualizamos sus campos
             existing.setName(project.getName());
             existing.setDescription(project.getDescription());
             existing.setStarDate(project.getStarDate());
@@ -54,13 +54,13 @@ public class ProjectServiceImpl implements ProjectService {
         return null; // si no existe, devolvemos null
     }
 
-    @Override
-    public void deleteProject(Integer id) {
-        projectRepository.deleteById(id);
+    @Override // Eliminar un proyecto por ID
+    public void deleteProject(Integer id) { // Eliminar un proyecto por ID
+        projectRepository.deleteById(id); // Llama al método deleteById del repositorio
     }
 
-    @Override
-    public List<Project> getProjectsByStatus(Status status) {
-        return projectRepository.findByStatus(status);
+    @Override // Obtener proyectos por estado
+    public List<Project> getProjectsByStatus(Status status) { // Obtener proyectos por estado
+        return projectRepository.findByStatus(status); // Llama al método findByStatus del repositorio
     }
 }

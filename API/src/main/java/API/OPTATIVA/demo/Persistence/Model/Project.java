@@ -20,45 +20,45 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Data
-@NoArgsConstructor
-@Entity
-@Table(name = "projects")
+@Data // Genera getters, setters, toString, equals, y hashCode
+@NoArgsConstructor // Genera un constructor sin argumentos
+@Entity // Marca esta clase como una entidad JPA
+@Table(name = "projects") // Mapea esta entidad a la tabla "projects"
 public class Project {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "project_id")
+    @Id // Marca este campo como la clave primaria
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Genera el valor de la clave primaria automáticamente
+    @Column(name = "project_id") // Mapea este campo a la columna "project_id"
     private Integer id;
 
-    @Column(name = "project_name")
+    @Column(name = "project_name") // Mapea este campo a la columna "project_name"
     private String name;
 
-    @Column(name = "description", columnDefinition = "LONGTEXT")
+    @Column(name = "description", columnDefinition = "LONGTEXT") // Mapea este campo a la columna "description"
     private String description;
 
-    @Column(name = "start_date")
+    @Column(name = "start_date") // Mapea este campo a la columna "start_date"
     private LocalDate starDate;
 
-    @Column(name = "end_date")
+    @Column(name = "end_date") // Mapea este campo a la columna "end_date"
     private LocalDate endDate;
 
     // Usamos demo_url como URL principal del proyecto
-    @Column(name = "demo_url")
+    @Column(name = "demo_url") // Mapea este campo a la columna "demo_url"
     private String demoUrl;
 
-    @Column(name = "picture")
+    @Column(name = "picture") // Mapea este campo a la columna "picture"
     private String picture;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "status_status_id", referencedColumnName = "status_id")
-    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-    private Status status;
+    @ManyToOne(fetch = FetchType.EAGER) // Muchos proyectos pueden tener un mismo estado
+    @JoinColumn(name = "status_status_id", referencedColumnName = "status_id") // Clave foránea al estado
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) // Evita problemas de serialización
+    private Status status; // Estado del proyecto
 
-    @ManyToMany(mappedBy = "projects", fetch = FetchType.LAZY)
-    @JsonIgnore
+    @ManyToMany(mappedBy = "projects", fetch = FetchType.LAZY) // Relación muchos a muchos con Developer
+    @JsonIgnore // Evita serialización infinita
     private List<Developer> developersWorking;
 
-    @ManyToMany(mappedBy = "projects", fetch = FetchType.LAZY)
-    @JsonIgnore
+    @ManyToMany(mappedBy = "projects", fetch = FetchType.LAZY) // Relación muchos a muchos con Technology
+    @JsonIgnore // Evita serialización infinita
     private List<Technology> technologiesUsed;
 }

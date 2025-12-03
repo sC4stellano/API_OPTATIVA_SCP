@@ -2,6 +2,8 @@ package API.OPTATIVA.demo.Persistence.Model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,7 +32,8 @@ public class Technology {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "technologies_used_in_projects", joinColumns = {
-            @JoinColumn(name = "technologies_tech_id", referencedColumnName = "tech_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "tecnologia_tecnologia_id", referencedColumnName = "tech_id") }, inverseJoinColumns = {
                     @JoinColumn(name = "projects_project_id", referencedColumnName = "project_id") })
+    @JsonIgnore
     List<Project> projects;
 }

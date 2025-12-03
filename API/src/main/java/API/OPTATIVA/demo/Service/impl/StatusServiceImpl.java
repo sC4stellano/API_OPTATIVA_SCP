@@ -11,42 +11,42 @@ import API.OPTATIVA.demo.Service.StatusService;
 
 @Service
 public class StatusServiceImpl implements StatusService {
-    @Autowired
-    private StatusRepository statusRepository;
+    @Autowired // Inyección del repositorio
+    private StatusRepository statusRepository; // Repositorio de Status
 
-    @Override
-    public List<Status> getAllStatus() {
-        return statusRepository.findAll();
+    @Override // Obtener todos los status
+    public List<Status> getAllStatus() { // Obtener todos los status
+        return statusRepository.findAll(); // Llama al método findAll del repositorio
     }
 
-    @Override
-    public Status getStatusById(Integer id) {
-        return statusRepository.findById(id).orElse(null);
+    @Override // Obtener status por ID
+    public Status getStatusById(Integer id) { // Obtener status por ID
+        return statusRepository.findById(id).orElse(null); // devuelve null si no existe
     }
 
-    @Override
-    public List<Status> getStatusByName(String name) {
-        return statusRepository.findByStatusNameContainingIgnoreCase(name);
+    @Override // Buscar status por nombre
+    public List<Status> getStatusByName(String name) { // Buscar status por nombre
+        return statusRepository.findByStatusNameContainingIgnoreCase(name); // Llama al método del repositorio
     }
 
-    @Override
-    public Status createStatus(Status status) {
-        return statusRepository.save(status);
+    @Override // Crear un nuevo status
+    public Status createStatus(Status status) { // Crear un nuevo status
+        return statusRepository.save(status); // Guarda el status en la base de datos
     }
 
-    @Override
-    public Status updateStatus(Integer id, Status status) {
-        Status existing = statusRepository.findById(id).orElse(null);
-        if (existing != null) {
-            existing.setStatusName(status.getStatusName());
-            return statusRepository.save(existing);
+    @Override // Actualizar un status existente
+    public Status updateStatus(Integer id, Status status) { // Actualizar un status existente
+        Status existing = statusRepository.findById(id).orElse(null); // devuelve null si no existe
+        if (existing != null) { // Si el status existe, actualizamos sus campos
+            existing.setStatusName(status.getStatusName()); // Actualiza el nombre del status
+            return statusRepository.save(existing); // Guarda los cambios
         }
-        return null;
+        return null; // si no existe, devolvemos null
     }
 
-    @Override
-    public void deleteStatus(Integer id) {
-        statusRepository.deleteById(id);
+    @Override // Eliminar un status por ID
+    public void deleteStatus(Integer id) { // Eliminar un status por ID
+        statusRepository.deleteById(id); // Llama al método deleteById del repositorio
 
     }
 }

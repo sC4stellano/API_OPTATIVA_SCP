@@ -5,7 +5,7 @@ import java.util.List;
 import API.OPTATIVA.demo.Persistence.Model.Project;
 import API.OPTATIVA.demo.Persistence.Model.Status;
 
-public interface ProjectService {
+public interface ProjectService { // Servicio para la entidad Project
 
     // Obtener todos los proyectos
     public List<Project> getAllProjects();

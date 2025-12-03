@@ -11,41 +11,41 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class TechnologyServiceImpl implements TechnologyService {
-    private final TechnologyRepository technologyRepository;
+    private final TechnologyRepository technologyRepository; // Repositorio de Technology
 
-    @Override
-    public List<Technology> getAllTechnologies() {
-        return technologyRepository.findAll();
+    @Override // Obtener todas las tecnologías
+    public List<Technology> getAllTechnologies() { // Obtener todas las tecnologías
+        return technologyRepository.findAll(); // Llama al método findAll del repositorio
     }
 
-    @Override
-    public Technology getTechnologyById(Integer id) {
-        return technologyRepository.findById(id).orElse(null);
+    @Override // Obtener tecnología por ID
+    public Technology getTechnologyById(Integer id) { // Obtener tecnología por ID
+        return technologyRepository.findById(id).orElse(null); // devuelve null si no existe
     }
 
-    @Override
-    public List<Technology> getTechnologiesByName(String name) {
-        return technologyRepository.findByTechNameContainingIgnoreCase(name);
+    @Override // Obtener tecnologías por nombre
+    public List<Technology> getTechnologiesByName(String name) { // Obtener tecnologías por nombre
+        return technologyRepository.findByTechNameContainingIgnoreCase(name); // Llama al método del repositorio
     }
 
-    @Override
-    public Technology createTechnology(Technology technology) {
-        return technologyRepository.save(technology);
+    @Override // Crear una nueva tecnología
+    public Technology createTechnology(Technology technology) { // Crear una nueva tecnología
+        return technologyRepository.save(technology); // Guarda la tecnología en la base de datos
     }
 
-    @Override
-    public Technology updateTechnology(Integer id, Technology technology) {
-        Technology existing = technologyRepository.findById(id).orElse(null);
-        if (existing != null) {
-            existing.setTechName(technology.getTechName());
-            existing.setProjects(technology.getProjects());
-            return technologyRepository.save(existing);
+    @Override // Actualizar una tecnología existente
+    public Technology updateTechnology(Integer id, Technology technology) { // Actualizar una tecnología existente
+        Technology existing = technologyRepository.findById(id).orElse(null); // devuelve null si no existe
+        if (existing != null) { // Si la tecnología existe, actualizamos sus campos
+            existing.setTechName(technology.getTechName()); // Actualiza el nombre de la tecnología
+            existing.setProjects(technology.getProjects()); // Actualiza los proyectos asociados
+            return technologyRepository.save(existing); // Guarda los cambios
         }
-        return null;
+        return null; // si no existe, devolvemos null
     }
 
-    @Override
-    public void deleteTechnology(Integer id) {
-        technologyRepository.deleteById(id);
+    @Override // Eliminar una tecnología por ID
+    public void deleteTechnology(Integer id) { // Eliminar una tecnología por ID
+        technologyRepository.deleteById(id); // Llama al método deleteById del repositorio
     }
 }

@@ -9,7 +9,7 @@ import API.OPTATIVA.demo.Persistence.Model.Status;
 
 @Repository
 public interface StatusRepository extends JpaRepository<Status, Integer> {
-    // Buscar status por nombre
+    // Buscar status por el nombre
     List<Status> findByStatusNameContainingIgnoreCase(String name);
 
 }

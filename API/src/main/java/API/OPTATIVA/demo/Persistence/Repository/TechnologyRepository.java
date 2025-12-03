@@ -9,7 +9,7 @@ import API.OPTATIVA.demo.Persistence.Model.Technology;
 
 @Repository
 public interface TechnologyRepository extends JpaRepository<Technology, Integer> {
-    // tecnologias por nombre
+    // Tecnologías por el nombre
     List<Technology> findByTechNameContainingIgnoreCase(String name);
 
 }

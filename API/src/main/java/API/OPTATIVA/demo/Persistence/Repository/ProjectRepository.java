@@ -11,8 +11,9 @@ import API.OPTATIVA.demo.Persistence.Model.Status;
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
+    // Repositorio para la entidad Project
 
-    // Búsqueda de proyectos por palabra en el nombre (query simple)
+    // Búsqueda de proyectos por palabra en el nombre
     List<Project> findByNameContainingIgnoreCase(String word);
 
     // Búsqueda de proyectos por estado

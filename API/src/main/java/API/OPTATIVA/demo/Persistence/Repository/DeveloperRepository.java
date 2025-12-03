@@ -9,7 +9,7 @@ import API.OPTATIVA.demo.Persistence.Model.Developer;
 
 @Repository
 public interface DeveloperRepository extends JpaRepository<Developer, Integer> {
-
+    // Repositorio para la entidad Developer
     // Método para buscar developers por nombre
     List<Developer> findByNameContainingIgnoreCase(String name);
 }

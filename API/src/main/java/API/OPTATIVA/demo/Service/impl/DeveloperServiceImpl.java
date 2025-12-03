@@ -12,32 +12,32 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class DeveloperServiceImpl implements DeveloperService {
-    private final DeveloperRepository developerRepository;
+    private final DeveloperRepository developerRepository; // Inyección del repositorio
 
-    @Override
-    public List<Developer> getAllDevelopers() {
-        return developerRepository.findAll();
+    @Override // Obtener todos los developers
+    public List<Developer> getAllDevelopers() { // Obtener todos los developers
+        return developerRepository.findAll(); // Llama al método findAll del repositorio
     }
 
-    @Override
-    public Developer getDeveloperById(Integer id) {
+    @Override // Obtener developer por ID
+    public Developer getDeveloperById(Integer id) { // Obtener developer por ID
         return developerRepository.findById(id).orElse(null); // devuelve null si no existe
     }
 
-    @Override
-    public List<Developer> getDevelopersByName(String name) {
-        return developerRepository.findByNameContainingIgnoreCase(name);
+    @Override // Obtener developers por nombre
+    public List<Developer> getDevelopersByName(String name) { // Obtener developers por nombre
+        return developerRepository.findByNameContainingIgnoreCase(name); // Llama al método del repositorio
     }
 
-    @Override
-    public Developer createDeveloper(Developer developer) {
-        return developerRepository.save(developer);
+    @Override // Crear un nuevo developer
+    public Developer createDeveloper(Developer developer) { // Crear un nuevo developer
+        return developerRepository.save(developer); // Guarda el developer en la base de datos
     }
 
-    @Override
-    public Developer updateDeveloper(Integer id, Developer developer) {
-        Developer existing = developerRepository.findById(id).orElse(null);
-        if (existing != null) {
+    @Override // Actualizar un developer existente
+    public Developer updateDeveloper(Integer id, Developer developer) { // Actualizar un developer existente
+        Developer existing = developerRepository.findById(id).orElse(null); // devuelve null si no existe
+        if (existing != null) { // Si el developer existe, actualizamos sus campos
             existing.setName(developer.getName());
             existing.setSurname(developer.getSurname());
             existing.setEmail(developer.getEmail());
@@ -45,11 +45,11 @@ public class DeveloperServiceImpl implements DeveloperService {
             existing.setGitUrl(developer.getGitUrl());
             return developerRepository.save(existing);
         }
-        return null;
+        return null; // si no existe, devolvemos null
     }
 
-    @Override
-    public void deleteDeveloper(Integer id) {
-        developerRepository.deleteById(id);
+    @Override // Eliminar un developer por ID
+    public void deleteDeveloper(Integer id) { // Eliminar un developer por ID
+        developerRepository.deleteById(id); // Llama al método deleteById del repositorio
     }
 }
